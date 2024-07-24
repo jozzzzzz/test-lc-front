@@ -10,7 +10,7 @@
 - Le test doit obligatoirement être réalisé avec react.
 - Vous pouvez utilisez un framework si vous le souhaitez ou vous pouvez créer votre app avec create-react-app.
 - Vous pouvez utiliser un framework css si vous le souhaitez (bootstrap, tailwind, etc), mais ce n'est pas obligatoire.
-- L’application ne se repose pas sur une base de donnée mais doit garder la composiiton de votre équipe
+- L’application ne se repose pas sur une base de donnée mais doit garder la composition de votre équipe
 - L’application comporte un header visible partout (cf section Header)
 - Lorsqu'on commence l’équipe est vide.
 - Il ne peut pas y avoir plus de 3 personnes dans votre équipe.
