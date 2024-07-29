@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 const useUsers = () => {
   const [users, setUsers] = useState([])
+  console.log('useUsers')
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -10,7 +11,8 @@ const useUsers = () => {
         const data = await response.json()
         setUsers(data.data)
       } catch (error) {
-        // ctach error
+        const message = error.message
+        console.log(message)
       } 
     };
 
