@@ -1,13 +1,18 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import useUsers from '../requests/requests'
+import { useUsers } from '../requests/requests'
 import PersonList from './components/PersonList'
 import Team from './components/Team'
 import './Home.css'
 
 function Home() {
 	const { users } = useUsers()
-	const [team, setTeam] = useState(JSON.parse(localStorage.getItem('team')) || [])
+	const [team, setTeam] = useState([])
+
+	useEffect(() => {
+		const crf = JSON.parse(localStorage.getItem('team'))
+		setTeam(crf ?? [])
+	}, [])
 
 	useEffect(() => {
 		localStorage.setItem('team', JSON.stringify(team))
