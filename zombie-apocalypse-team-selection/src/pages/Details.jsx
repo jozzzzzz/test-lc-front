@@ -1,21 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import './Details.css'
 import { useUserById } from '../requests/requests'
+import Profil from './components/Profil'
+import './Details.css'
 
 const Details = () => {
 	const { id } = useParams()
 	const { user } = useUserById(id)
+	const [team, setTeam] = useState(() => {
+		const savedTeam = JSON.parse(localStorage.getItem('team'))
+		return savedTeam ?? []
+	})
+
+	useEffect(() => {
+		localStorage.setItem('team', JSON.stringify(team))
+	}, [team])
+
+	const addToTeam = (user) => {
+		if (team.length < 3 && !team.includes(user.id)) {
+			setTeam([...team, user.id])
+		}
+	}
+
+	const removeFromTeam = (user) => {
+		setTeam(team.filter(id => id !== user.id))
+	}
 
 	if (!user) {
-		return <div>Loading...</div>
+		return <p>Loading...</p>
 	}
 
 	return (
-		<div className="person-detail">
-			<img src={user.avatar} alt={`${user.first_name} ${user.last_name}`} />
-			<h2>{user.first_name} {user.last_name}</h2>
-			<p>Email: {user.email}</p>
+		<div>
+			<Profil user={user} team={team} addToTeam={addToTeam} removeFromTeam={removeFromTeam} />
 		</div>
 	)
 }

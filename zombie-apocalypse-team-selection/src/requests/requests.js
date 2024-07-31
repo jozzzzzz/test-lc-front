@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 
 const useUsers = () => {
 	const [users, setUsers] = useState([])
-	console.log('useUsers')
 
 	useEffect(() => {
 		const fetchUsers = async () => {

@@ -7,19 +7,17 @@ import './Home.css'
 
 function Home() {
 	const { users } = useUsers()
-	const [team, setTeam] = useState([])
-
-	useEffect(() => {
-		const crf = JSON.parse(localStorage.getItem('team'))
-		setTeam(crf ?? [])
-	}, [])
+	const [team, setTeam] = useState(() => {
+		const savedTeam = JSON.parse(localStorage.getItem('team'))
+		return savedTeam ?? []
+	})
 
 	useEffect(() => {
 		localStorage.setItem('team', JSON.stringify(team))
 	}, [team])
 
 	const addToTeam = (user) => {
-		if (team.length < 3 && !team.includes(user)) {
+		if (team.length < 3 && !team.includes(user.id)) {
 			setTeam([...team, user.id])
 		}
 	}
@@ -27,6 +25,7 @@ function Home() {
 	const removeFromTeam = (user) => {
 		setTeam(team.filter(id => id !== user.id))
 	}
+
 	return (
 		<div className="page-container">
 			<h2>Zombie Apocalypse Team</h2>

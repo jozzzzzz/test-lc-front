@@ -12,6 +12,7 @@ function PersonList ({ users, team, addToTeam, removeFromTeam }) {
                     <img
                         src={user.avatar}
                         alt={`${user.first_name} ${user.last_name}`}
+                        className={team.includes(user.id) ? 'team' : 'not-team'}
                         onClick={() => navigate(`/details/${user.id}`)}
                     />
                     <p>{user.first_name}</p>
