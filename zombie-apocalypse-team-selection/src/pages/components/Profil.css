@@ -19,3 +19,11 @@
 .person-detail p {
     margin-bottom: 20px;
 }
+
+.team {
+    border: 3px solid green;
+}
+
+.not-team {
+    border: 3px solid red;
+}

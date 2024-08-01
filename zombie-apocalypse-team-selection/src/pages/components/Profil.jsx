@@ -5,7 +5,11 @@ function Profil({ user, team, addToTeam, removeFromTeam }) {
 
     return (
         <div className="person-detail">
-            <img src={user.avatar} alt={`${user.first_name} ${user.last_name}`} />
+            <img
+                src={user.avatar}
+                alt={`${user.first_name} ${user.last_name}`}
+                className={team.includes(user.id) ? 'team' : 'not-team'}
+            />
             <h2>{user.first_name} {user.last_name}</h2>
             <p>Email: {user.email}</p>
             {team.includes(user.id) ? (

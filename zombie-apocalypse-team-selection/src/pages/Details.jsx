@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useUserById } from '../requests/requests'
 import Profil from './components/Profil'
-import './Details.css'
 
 const Details = () => {
 	const { id } = useParams()
