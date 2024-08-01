@@ -28,4 +28,4 @@ $ npm run start
 
 3. **Maintenant que le projet est lancé en local allez à l'url :**
 
-[http://localhost:3000](http://localhost:3000)
+ - [http://localhost:3000](http://localhost:3000)
