@@ -5,7 +5,7 @@ import Profil from './components/Profil'
 
 const Details = () => {
 	const { id } = useParams()
-	const { user } = useUserById(id)
+	const { user, loading, error } = useUserById(id)
 	const [team, setTeam] = useState(() => {
 		const savedTeam = JSON.parse(localStorage.getItem('team'))
 		return savedTeam ?? []
@@ -14,6 +14,9 @@ const Details = () => {
 	useEffect(() => {
 		localStorage.setItem('team', JSON.stringify(team))
 	}, [team])
+
+	if (loading) return <p>Loading...</p>
+	if (error) return <p>Error: {error.message}</p>
 
 	const addToTeam = (user) => {
 		if (team.length < 3 && !team.includes(user.id)) {

@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 
 const useUsers = () => {
 	const [users, setUsers] = useState([])
+	const [loading, setLoading] = useState(true)
+	const [error, setError] = useState(null)
 
 	useEffect(() => {
 		const fetchUsers = async () => {
@@ -10,19 +12,22 @@ const useUsers = () => {
 				const data = await response.json()
 				setUsers(data.data)
 			} catch (error) {
-				const message = error.message
-				console.log(message)
+				setError(error)
+			} finally {
+				setLoading(false)
 			}
 		};
 
 		fetchUsers()
 	}, [])
 
-	return { users }
+	return { users, loading, error }
 }
 
 const useUserById = (id) => {
 	const [user, setUser] = useState(null)
+	const [loading, setLoading] = useState(true)
+	const [error, setError] = useState(null)
 
 	useEffect(() => {
 		const fetchUser = async () => {
@@ -31,15 +36,16 @@ const useUserById = (id) => {
 				const data = await response.json()
 				setUser(data.data)
 			} catch (error) {
-				const message = error.message
-				console.log(message)
+				setError(error)
+			} finally {
+				setLoading(false)
 			}
 		}
 
 		fetchUser()
 	}, [id])
 
-	return { user }
+	return { user, loading, error }
 }
 
 export { useUsers, useUserById }

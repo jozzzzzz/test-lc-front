@@ -6,7 +6,7 @@ import Team from './components/Team'
 import './Home.css'
 
 function Home() {
-	const { users } = useUsers()
+	const { users, loading, error } = useUsers()
 	const [team, setTeam] = useState(() => {
 		const savedTeam = JSON.parse(localStorage.getItem('team'))
 		return savedTeam ?? []
@@ -15,6 +15,9 @@ function Home() {
 	useEffect(() => {
 		localStorage.setItem('team', JSON.stringify(team))
 	}, [team])
+
+	if (loading) return <p>Loading...</p>
+	if (error) return <p>Error: {error.message}</p>
 
 	const addToTeam = (user) => {
 		if (team.length < 3 && !team.includes(user.id)) {
